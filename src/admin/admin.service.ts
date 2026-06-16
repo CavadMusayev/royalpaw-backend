@@ -9,6 +9,15 @@ export class AdminService {
     @InjectRepository(User) private users: Repository<User>,
   ) {}
 
+
+pendingKyc() {
+    return this.users.find({
+      where: { kycStatus: 'in_review' },
+      order: { createdAt: 'DESC' },
+    });
+
+    
+  }
   async getStats() {
     const totalUsers = await this.users.count();
     const caretakers = await this.users.count({ where: { role: 'caretaker' } });
@@ -29,3 +38,5 @@ export class AdminService {
     return this.users.update(id, { kycStatus: status });
   }
 }
+
+

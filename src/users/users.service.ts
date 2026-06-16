@@ -13,7 +13,15 @@ export class UsersService {
     return this.repo.find({ order: { createdAt: 'DESC' }, take: 100 });
   }
 
+findCaretakers() {
+    return this.repo.find({
+      where: { role: 'caretaker', isActive: true },
+      order: { createdAt: 'DESC' },
+    });
+    
+  }
   findOne(id: string) {
     return this.repo.findOneBy({ id });
   }
 }
+

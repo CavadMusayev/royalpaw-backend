@@ -54,6 +54,12 @@ export class User {
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 
+  @Column({ type: 'int', default: 0 })
+  points!: number;
+
+  @Column({ name: 'membership_tier', default: 'free' })
+  membershipTier!: string;
+
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt!: Date;
 }

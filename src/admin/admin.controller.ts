@@ -10,6 +10,13 @@ export class AdminController {
   @Get('stats')
   stats() { return this.admin.getStats(); }
 
+  
+@Get('kyc/pending')
+  pendingKyc() {
+    return this.admin.pendingKyc();
+  }
+
+
   @Get('users')
   users() { return this.admin.listUsers(); }
 
