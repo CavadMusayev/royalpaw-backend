@@ -1,9 +1,8 @@
-import { IsUUID, IsString } from 'class-validator';
+import { IsUUID, IsString, IsOptional } from 'class-validator';
 
 export class StartConversationDto {
   @IsUUID()
   ownerId!: string;
-
   @IsUUID()
   caretakerId!: string;
 }
@@ -11,10 +10,17 @@ export class StartConversationDto {
 export class SendMessageDto {
   @IsUUID()
   conversationId!: string;
-
   @IsUUID()
   senderId!: string;
-
+  @IsOptional()
   @IsString()
-  body!: string;
+  body?: string;
+  @IsOptional()
+  @IsString()
+  type?: string;
+@IsOptional()
+  @IsString()
+  audioUrl?: string;
+  @IsOptional()
+  audioDuration?: number;
 }

@@ -21,13 +21,16 @@ export class UploadController {
         },
       }),
       fileFilter: (req, file, cb) => {
-        // yalnız şəkil
-        if (!file.mimetype.match(/\/(jpg|jpeg|png|gif|webp)$/)) {
-          return cb(new BadRequestException('Yalnız şəkil faylı olmalıdır'), false);
+        // şəkil, audio və ya video (webm audio bəzən video/webm gəlir)
+        const ok = file.mimetype.startsWith('image/') ||
+                   file.mimetype.startsWith('audio/') ||
+                   file.mimetype.startsWith('video/');
+        if (!ok) {
+          return cb(new BadRequestException('Yalnız şəkil və ya audio faylı olmalıdır'), false);
         }
         cb(null, true);
       },
-      limits: { fileSize: 5 * 1024 * 1024 }, // maks 5MB
+      limits: { fileSize: 10 * 1024 * 1024 }, // maks 10MB
     }),
   )
   upload(@UploadedFile() file: Express.Multer.File) {

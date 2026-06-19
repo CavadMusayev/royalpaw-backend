@@ -60,6 +60,14 @@ export class User {
   @Column({ name: 'membership_tier', default: 'free' })
   membershipTier!: string;
 
+  @Column({ type: 'text', nullable: true })
+  services!: string;   // qulluqçunun etdiyi xidmətlər: "walking,grooming,bathing"
+
+
+  @Column({ name: 'last_seen', type: 'timestamptz', nullable: true })
+  lastSeen!: Date;
+
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt!: Date;
 }
+

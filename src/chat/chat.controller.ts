@@ -26,6 +26,12 @@ export class ChatController {
     return this.chat.getMessages(id);
   }
 
+  // Mesajları oxundu işarələ
+  @Post('conversations/:id/read')
+  markRead(@Param('id') id: string, @Body() body: any) {
+    return this.chat.markRead(id, body.readerId);
+  }
+
   // Mesaj göndər
   @Post('messages')
   send(@Body() dto: SendMessageDto) {

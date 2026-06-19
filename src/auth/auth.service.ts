@@ -29,6 +29,7 @@ export class AuthService {
       lastName: dto.lastName,
       phone: dto.phone,
       email: dto.email,
+      services: dto.services,
       passwordHash,
       kycStatus: 'pending',
     });
@@ -49,7 +50,24 @@ async login(dto: LoginDto) {
   }
   return this.sign(user);
 }
-
+async me(userId: string) {
+    const user = await this.repo.findOneBy({ id: userId });
+    if (!user) return null;
+    return {
+      id: user.id,
+      role: user.role,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      phone: user.phone,
+      address: user.address,
+      avatarUrl: user.avatarUrl,
+      points: user.points,
+      membershipTier: user.membershipTier,
+      kycStatus: user.kycStatus,
+      lastSeen: user.lastSeen,
+    };
+  }
   private sign(user: User) {
     const payload = { sub: user.id, role: user.role };
     return {

@@ -44,6 +44,19 @@ export class ChatService {
     });
   }
 
+  // Qarşı tərəfin mesajlarını oxundu işarələ (mən = reader)
+  async markRead(conversationId: string, readerId: string) {
+    await this.msgRepo
+      .createQueryBuilder()
+      .update(Message)
+      .set({ readAt: new Date() })
+      .where('conversation_id = :cid', { cid: conversationId })
+      .andWhere('sender_id != :rid', { rid: readerId })
+      .andWhere('read_at IS NULL')
+      .execute();
+    return { ok: true };
+  }
+
   
 
   // Mesaj göndər
@@ -57,10 +70,13 @@ async sendMessage(dto: SendMessageDto) {
     if (conv) {
       // göndərən kimdirsə, qarşı tərəf alıcıdır
       const recipientId = conv.ownerId === dto.senderId ? conv.caretakerId : conv.ownerId;
+const isAudio = dto.type === 'audio';
       await this.notifications.create({
         userId: recipientId,
         title: 'Yeni mesaj',
-       body: dto.body.length > 50 ? `${dto.body.substring(0, 50)}...` : dto.body,
+        body: isAudio
+            ? '🎤 Səsli mesaj'
+            : ((dto.body && dto.body.length > 50) ? `${dto.body.substring(0, 50)}...` : (dto.body || '')),
         icon: 'messageCircle',
       });
     }

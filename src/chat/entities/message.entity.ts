@@ -11,8 +11,17 @@ export class Message {
   @Column({ name: 'sender_id' })
   senderId!: string;
 
-  @Column()
+@Column({ nullable: true })
   body!: string;
+
+  @Column({ default: 'text' })
+  type!: string;   // text | audio
+
+  @Column({ name: 'audio_url', type: 'text', nullable: true })
+  audioUrl!: string;
+
+  @Column({ name: 'audio_duration', type: 'int', nullable: true })
+  audioDuration!: number;
 
   @Column({ name: 'read_at', type: 'timestamptz', nullable: true })
   readAt!: Date;

@@ -20,6 +20,9 @@ export class RegisterDto {
   @IsOptional()
   @IsString()
   email?: string;
+  @IsOptional()
+  @IsString()
+  services?: string;
 }
 
 export class LoginDto {
