@@ -20,6 +20,12 @@ export class ChatController {
     return this.chat.getConversations(userId);
   }
 
+  // istifadəçinin oxunmamış mesaj sayı
+  @Get('unread-count/:userId')
+  unreadCount(@Param('userId') userId: string) {
+    return this.chat.unreadCount(userId);
+  }
+  
   // Söhbətin mesajları
   @Get('conversations/:id/messages')
   messages(@Param('id') id: string) {
@@ -31,6 +37,9 @@ export class ChatController {
   markRead(@Param('id') id: string, @Body() body: any) {
     return this.chat.markRead(id, body.readerId);
   }
+
+
+
 
   // Mesaj göndər
   @Post('messages')

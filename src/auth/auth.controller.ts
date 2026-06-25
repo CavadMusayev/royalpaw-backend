@@ -17,9 +17,31 @@ export class AuthController {
     return this.auth.login(dto);
   }
 
-  @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Get('me')
   me(@Request() req: any) {
     return this.auth.me(req.user.id);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('change-password')
+  changePassword(@Request() req: any, @Body() body: any) {
+    return this.auth.changePassword(req.user.id, body.oldPassword, body.newPassword);
+  }
+
+
+  @Post('reset-password')
+  resetPassword(@Body() body: { email: string; newPassword: string }) {
+    return this.auth.resetPassword(body.email, body.newPassword);
+  }
+
+@Post('google')
+  google(@Body() body: { idToken: string; role?: string }) {
+    return this.auth.googleLogin(body.idToken, body.role);
+  }
+
+
+
 }
+
+

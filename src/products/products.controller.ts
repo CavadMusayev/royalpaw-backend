@@ -18,6 +18,11 @@ export class ProductsController {
     return this.products.findAll();
   }
 
+  @Get('seller/:sellerId')
+  bySeller(@Param('sellerId') sellerId: string) {
+    return this.products.findBySeller(sellerId);
+  }
+
   @Post()
   create(@Body() dto: CreateProductDto) {
     return this.products.create(dto);

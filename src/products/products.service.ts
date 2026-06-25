@@ -14,6 +14,11 @@ export class ProductsService {
     return this.repo.find({ where: { isActive: true }, order: { sortOrder: 'ASC' } });
   }
 
+  // bir satıcının məhsulları
+  findBySeller(sellerId: string) {
+    return this.repo.find({ where: { sellerId }, order: { createdAt: 'DESC' } });
+  }
+  
   findAll() {
     return this.repo.find({ order: { sortOrder: 'ASC' } });
   }

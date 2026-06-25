@@ -10,12 +10,12 @@ export class CreateServiceDto {
   @IsOptional() @IsString()
   description?: string;
 
-  @IsOptional() @IsString()
+ @IsOptional() @IsString()
   icon?: string;
-
+  @IsOptional() @IsString()
+  imageUrl?: string;
   @IsOptional() @IsString()
   category?: string;
-
   @IsOptional() @IsInt()
   sortOrder?: number;
 }
@@ -30,15 +30,14 @@ export class UpdateServiceDto {
   @IsOptional() @IsString()
   description?: string;
 
-  @IsOptional() @IsString()
+@IsOptional() @IsString()
   icon?: string;
-
+  @IsOptional() @IsString()
+  imageUrl?: string;
   @IsOptional() @IsString()
   category?: string;
-
   @IsOptional() @IsInt()
   sortOrder?: number;
-
   @IsOptional() @IsBoolean()
   isActive?: boolean;
 }
