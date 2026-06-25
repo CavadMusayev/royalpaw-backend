@@ -23,4 +23,20 @@ export class SendMessageDto {
   audioUrl?: string;
   @IsOptional()
   audioDuration?: number;
+  @IsOptional()
+  @IsString()
+  productName?: string;
+  @IsOptional()
+  @IsString()
+  productPhoto?: string;
+  @IsOptional()
+  productPrice?: number;
+  @IsOptional()
+  productQty?: number;
+  @IsOptional()
+  @IsString()
+  saleId?: string;
+  @IsOptional()
+  @IsString()
+  saleStatus?: string;
 }

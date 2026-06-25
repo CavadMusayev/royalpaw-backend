@@ -60,6 +60,24 @@ export class User {
   @Column({ name: 'membership_tier', default: 'free' })
   membershipTier!: string;
 
+
+  @Column({ name: 'commission_debt', type: 'int', default: 0 })
+  commissionDebt!: number;
+  @Column({ name: 'total_earnings', type: 'int', default: 0 })
+  totalEarnings!: number;
+  @Column({ name: 'refusal_count', type: 'int', default: 0 })
+  refusalCount!: number;
+  @Column({ name: 'is_suspended', default: false })
+  isSuspended!: boolean;
+  @Column({ name: 'oldest_debt_at', type: 'timestamptz', nullable: true })
+  oldestDebtAt!: Date;
+
+ @Column({ name: 'payment_pending', default: false })
+  paymentPending!: boolean;
+  @Column({ name: 'payment_receipt', type: 'text', nullable: true })
+  paymentReceipt!: string;
+
+  
   @Column({ type: 'text', nullable: true })
   services!: string;   // qulluqçunun etdiyi xidmətlər: "walking,grooming,bathing"
 

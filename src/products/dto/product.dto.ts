@@ -19,6 +19,9 @@ export class CreateProductDto {
   @IsOptional() @IsString()
   category?: string;
 
+  @IsOptional() @IsString()
+  sellerId?: string;
+
   @IsOptional() @IsNumber()
   rating?: number;
 
@@ -47,6 +50,9 @@ export class UpdateProductDto {
 
   @IsOptional() @IsString()
   category?: string;
+
+  @IsOptional() @IsString()
+  sellerId?: string;
 
   @IsOptional() @IsNumber()
   rating?: number;

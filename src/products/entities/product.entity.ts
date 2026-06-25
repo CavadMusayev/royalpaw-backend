@@ -26,6 +26,9 @@ export class Product {
   @Column({ default: 'food' })
   category!: string;
 
+  @Column({ name: 'seller_id', type: 'uuid', nullable: true })
+  sellerId!: string;
+
   @Column({ type: 'numeric', default: 5.0 })
   rating!: number;
 

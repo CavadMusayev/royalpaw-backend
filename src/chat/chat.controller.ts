@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query, UseGuards, Delete, Patch } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ChatService } from './chat.service';
 import { StartConversationDto, SendMessageDto } from './dto/chat.dto';
@@ -20,6 +20,12 @@ export class ChatController {
     return this.chat.getConversations(userId);
   }
 
+  // istifadəçinin oxunmamış mesaj sayı
+  @Get('unread-count/:userId')
+  unreadCount(@Param('userId') userId: string) {
+    return this.chat.unreadCount(userId);
+  }
+  
   // Söhbətin mesajları
   @Get('conversations/:id/messages')
   messages(@Param('id') id: string) {
@@ -32,9 +38,29 @@ export class ChatController {
     return this.chat.markRead(id, body.readerId);
   }
 
-  // Mesaj göndər
+
+
+// Mesaj göndər
   @Post('messages')
   send(@Body() dto: SendMessageDto) {
     return this.chat.sendMessage(dto);
+  }
+
+  // söhbəti sil
+  @Delete('conversations/:id')
+  deleteConversation(@Param('id') id: string) {
+    return this.chat.deleteConversation(id);
+  }
+
+  // mesaj sil
+  @Delete('messages/:id')
+  deleteMessage(@Param('id') id: string) {
+    return this.chat.deleteMessage(id);
+  }
+
+  // mesaj redaktə
+  @Patch('messages/:id')
+  editMessage(@Param('id') id: string, @Body() body: any) {
+    return this.chat.editMessage(id, body.body);
   }
 }

@@ -18,6 +18,11 @@ export class ProductsController {
     return this.products.findAll();
   }
 
+  @Get('seller/:sellerId')
+  bySeller(@Param('sellerId') sellerId: string) {
+    return this.products.findBySeller(sellerId);
+  }
+
   @Post()
   create(@Body() dto: CreateProductDto) {
     return this.products.create(dto);
@@ -28,8 +33,38 @@ export class ProductsController {
     return this.products.update(id, dto);
   }
 
-  @Delete(':id')
+ @Delete(':id')
   remove(@Param('id') id: string) {
     return this.products.remove(id);
+  }
+
+  // məhsulun şəkilləri
+  @Get(':id/images')
+  images(@Param('id') id: string) {
+    return this.products.getImages(id);
+  }
+
+  // şəkil əlavə et
+  @Post(':id/images')
+  addImage(@Param('id') id: string, @Body() body: any) {
+    return this.products.addImage(id, body.imageUrl);
+  }
+
+// şəkil sil
+  @Delete('images/:imageId')
+  removeImage(@Param('imageId') imageId: string) {
+    return this.products.removeImage(imageId);
+  }
+
+  // hadisə qeyd et
+  @Post(':id/track')
+  track(@Param('id') id: string, @Body() body: any) {
+    return this.products.trackEvent(id, body.eventType);
+  }
+
+  // satıcının analitikası
+  @Get('seller/:sellerId/analytics')
+  analytics(@Param('sellerId') sellerId: string) {
+    return this.products.sellerAnalytics(sellerId);
   }
 }

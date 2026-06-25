@@ -13,9 +13,9 @@ export class UsersService {
     return this.repo.find({ order: { createdAt: 'DESC' }, take: 100 });
   }
 
-  async findCaretakers(service?: string) {
+async findCaretakers(service?: string) {
     const all = await this.repo.find({
-      where: { role: 'caretaker', isActive: true },
+      where: { role: 'caretaker', isActive: true, isSuspended: false },
       order: { createdAt: 'DESC' },
     });
     if (!service) return all;

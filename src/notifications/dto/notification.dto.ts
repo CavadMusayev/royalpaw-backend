@@ -10,6 +10,8 @@ export class CreateNotificationDto {
   @IsOptional() @IsString()
   body?: string;
 
-  @IsOptional() @IsString()
+@IsOptional() @IsString()
   icon?: string;
+  @IsOptional() @IsString()
+  link?: string;
 }

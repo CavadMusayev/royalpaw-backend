@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsInt, IsUUID } from 'class-validator';
+import { IsString, IsOptional, IsInt, IsUUID, IsNumber } from 'class-validator';
 
 export class CreatePetDto {
   @IsUUID()
@@ -17,6 +17,9 @@ export class CreatePetDto {
   @IsOptional()
   @IsInt()
   ageMonths?: number;
+  @IsOptional()
+  @IsNumber()
+  weightKg?: number;
 
   @IsOptional()
   @IsString()

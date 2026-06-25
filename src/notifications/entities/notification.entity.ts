@@ -17,9 +17,10 @@ export class Notification {
   @Column({ default: 'bell' })
   icon!: string;
 
-  @Column({ name: 'is_read', default: false })
+ @Column({ name: 'is_read', default: false })
   isRead!: boolean;
-
+  @Column({ type: 'text', nullable: true })
+  link!: string;
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 }

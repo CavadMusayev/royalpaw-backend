@@ -27,4 +27,22 @@ export class BookingsController {
   updateStatus(@Param('id') id: string, @Body() b: { status: string }) {
     return this.bookings.updateStatus(id, b.status);
   }
+
+  // qulluqçu konum göndərir
+  @Post(':id/location')
+  updateLocation(@Param('id') id: string, @Body() b: { lat: number; lng: number }) {
+    return this.bookings.updateLocation(id, b.lat, b.lng);
+  }
+
+  // sahib konum alır
+  @Get(':id/location')
+  getLocation(@Param('id') id: string) {
+    return this.bookings.getLocation(id);
+  }
+
+  // izləməni dayandır
+  @Post(':id/stop-tracking')
+  stopTracking(@Param('id') id: string) {
+    return this.bookings.stopTracking(id);
+  }
 }

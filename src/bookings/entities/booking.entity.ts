@@ -32,6 +32,15 @@ export class Booking {
   @Column({ default: 'AZN' })
   currency!: string;
 
+ @Column({ name: 'live_lat', type: 'double precision', nullable: true })
+  liveLat!: number;
+  @Column({ name: 'live_lng', type: 'double precision', nullable: true })
+  liveLng!: number;
+  @Column({ name: 'live_updated_at', type: 'timestamptz', nullable: true })
+  liveUpdatedAt!: Date;
+  @Column({ name: 'tracking_active', default: false })
+  trackingActive!: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 }

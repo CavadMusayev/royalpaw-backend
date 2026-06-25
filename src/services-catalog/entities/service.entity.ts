@@ -20,6 +20,9 @@ export class ServiceItem {
   @Column({ default: 'pawPrint' })
   icon!: string;
 
+  @Column({ name: 'image_url', type: 'text', nullable: true })
+  imageUrl!: string;
+
   @Column({ default: 'general' })
   category!: string;
 

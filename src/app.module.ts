@@ -16,6 +16,12 @@ import { ProductsModule } from './products/products.module';
 import { HotelModule } from './hotel/hotel.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { OtpModule } from './otp/otp.module';
+import { BannersModule } from './banners/banners.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { CommissionModule } from './commission/commission.module';
+import { PaymentCardModule } from './payment-card/payment-card.module';
+import { SalesModule } from './sales/sales.module';
 
 @Module({
   imports: [
@@ -46,6 +52,16 @@ import { ReviewsModule } from './reviews/reviews.module';
     NotificationsModule,
     NotificationsModule,
     ReviewsModule,
+    ReviewsModule,
+    OtpModule,
+    OtpModule,
+    BannersModule,
+    ScheduleModule.forRoot(),
+    BannersModule,
+    CommissionModule,
+    CommissionModule,
+    PaymentCardModule,
+    SalesModule,
   ],
 })
 export class AppModule {}

@@ -23,10 +23,13 @@ export class PetsService {
     return this.repo.find({ where: { ownerId } });
   }
 
-  findOne(id: string) {
+ findOne(id: string) {
     return this.repo.findOneBy({ id });
   }
-
+  async update(id: string, dto: Partial<CreatePetDto>) {
+    await this.repo.update(id, dto);
+    return this.repo.findOneBy({ id });
+  }
   remove(id: string) {
     return this.repo.delete(id);
   }
