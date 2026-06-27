@@ -9,6 +9,7 @@ export class BannersService {
     @InjectRepository(Banner) private repo: Repository<Banner>,
   ) {}
 
+<<<<<<< HEAD
 // aktiv bannerlər (mobil üçün, rola görə)
   findActive(role?: string) {
     const qb = this.repo.createQueryBuilder('b')
@@ -18,6 +19,11 @@ export class BannersService {
       qb.andWhere("(b.target = 'all' OR b.target = :role)", { role });
     }
     return qb.orderBy('b.sort_order', 'ASC').getMany();
+=======
+  // aktiv bannerlər (mobil üçün)
+  findActive() {
+    return this.repo.find({ where: { isActive: true }, order: { sortOrder: 'ASC' } });
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   }
 
   // hamısı (admin üçün)

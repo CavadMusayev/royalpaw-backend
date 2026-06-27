@@ -21,7 +21,11 @@ import { BannersModule } from './banners/banners.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CommissionModule } from './commission/commission.module';
 import { PaymentCardModule } from './payment-card/payment-card.module';
+<<<<<<< HEAD
 import { SalesModule } from './sales/sales.module';
+=======
+
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
 
 @Module({
   imports: [
@@ -61,7 +65,10 @@ import { SalesModule } from './sales/sales.module';
     CommissionModule,
     CommissionModule,
     PaymentCardModule,
+<<<<<<< HEAD
     SalesModule,
+=======
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   ],
 })
 export class AppModule {}

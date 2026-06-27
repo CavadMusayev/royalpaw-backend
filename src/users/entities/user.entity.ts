@@ -63,19 +63,27 @@ export class User {
 
   @Column({ name: 'commission_debt', type: 'int', default: 0 })
   commissionDebt!: number;
+<<<<<<< HEAD
   @Column({ name: 'total_earnings', type: 'int', default: 0 })
   totalEarnings!: number;
   @Column({ name: 'refusal_count', type: 'int', default: 0 })
   refusalCount!: number;
+=======
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   @Column({ name: 'is_suspended', default: false })
   isSuspended!: boolean;
   @Column({ name: 'oldest_debt_at', type: 'timestamptz', nullable: true })
   oldestDebtAt!: Date;
 
+<<<<<<< HEAD
  @Column({ name: 'payment_pending', default: false })
   paymentPending!: boolean;
   @Column({ name: 'payment_receipt', type: 'text', nullable: true })
   paymentReceipt!: string;
+=======
+  @Column({ name: 'payment_pending', default: false })
+  paymentPending!: boolean;
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
 
   
   @Column({ type: 'text', nullable: true })

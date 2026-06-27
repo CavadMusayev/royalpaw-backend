@@ -50,19 +50,30 @@ export class CommissionService {
     user.oldestDebtAt = null as any;
     user.isSuspended = false;
     user.paymentPending = false;
+<<<<<<< HEAD
     user.paymentReceipt = null as any;
+=======
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
     return this.userRepo.save(user);
   }
 
 
   
 
+<<<<<<< HEAD
  // qulluqçu "ödədim" bildirir (çek şəkli ilə)
   async notifyPayment(userId: string, receipt?: string) {
     const user = await this.userRepo.findOneBy({ id: userId });
     if (!user) return null;
     user.paymentPending = true;
     if (receipt) user.paymentReceipt = receipt;
+=======
+  // qulluqçu "ödədim" bildirir
+  async notifyPayment(userId: string) {
+    const user = await this.userRepo.findOneBy({ id: userId });
+    if (!user) return null;
+    user.paymentPending = true;
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
     return this.userRepo.save(user);
   }
 // bütün qulluqçuların komissiya məlumatı (admin)
@@ -77,11 +88,18 @@ export class CommissionService {
       lastName: c.lastName,
       phone: c.phone,
       avatarUrl: c.avatarUrl,
+<<<<<<< HEAD
    commissionDebt: c.commissionDebt ?? 0,
       isSuspended: c.isSuspended ?? false,
       oldestDebtAt: c.oldestDebtAt,
       paymentPending: c.paymentPending ?? false,
       paymentReceipt: c.paymentReceipt ?? null,
+=======
+    commissionDebt: c.commissionDebt ?? 0,
+      isSuspended: c.isSuspended ?? false,
+      oldestDebtAt: c.oldestDebtAt,
+      paymentPending: c.paymentPending ?? false,
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
     }));
   }
 

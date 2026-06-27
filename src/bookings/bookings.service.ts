@@ -4,14 +4,20 @@ import { Repository } from 'typeorm';
 import { Booking } from './entities/booking.entity';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { User } from '../users/entities/user.entity';
+<<<<<<< HEAD
 import { NotificationsService } from '../notifications/notifications.service';
+=======
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
 
 @Injectable()
 export class BookingsService {
   constructor(
     @InjectRepository(Booking) private repo: Repository<Booking>,
     @InjectRepository(User) private userRepo: Repository<User>,
+<<<<<<< HEAD
     private notifications: NotificationsService,
+=======
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   ) {}
 
 async create(dto: CreateBookingDto) {
@@ -22,6 +28,7 @@ async create(dto: CreateBookingDto) {
         throw new NotFoundException('Bu qulluqçu hazırda sifariş qəbul etmir');
       }
     }
+<<<<<<< HEAD
   const booking = this.repo.create(dto);
     const saved = await this.repo.save(booking);
     // qulluqçuya bildiriş göndər
@@ -37,6 +44,10 @@ async create(dto: CreateBookingDto) {
       } catch (_) {}
     }
     return saved;
+=======
+    const booking = this.repo.create(dto);
+    return this.repo.save(booking);
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   }
 
   findAll() {
@@ -60,14 +71,20 @@ async create(dto: CreateBookingDto) {
     if (status === 'completed' && !wasCompleted && booking.caretakerId) {
       const caretaker = await this.userRepo.findOneBy({ id: booking.caretakerId });
       if (caretaker) {
+<<<<<<< HEAD
       const commission = Math.round((booking.amountMinor ?? 0) * 0.10);
         caretaker.commissionDebt = (caretaker.commissionDebt ?? 0) + commission;
         // sifariş məbləği qazanca əlavə olunur
         caretaker.totalEarnings = (caretaker.totalEarnings ?? 0) + (booking.amountMinor ?? 0);
+=======
+        const commission = Math.round((booking.amountMinor ?? 0) * 0.10);
+        caretaker.commissionDebt = (caretaker.commissionDebt ?? 0) + commission;
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
         // ilk borcdursa, tarixi təyin et (15 gün hesablamaq üçün)
         if (!caretaker.oldestDebtAt) {
           caretaker.oldestDebtAt = new Date();
         }
+<<<<<<< HEAD
       await this.userRepo.save(caretaker);
       }
     }
@@ -105,5 +122,12 @@ async create(dto: CreateBookingDto) {
     booking.trackingActive = false;
     await this.repo.save(booking);
     return { ok: true };
+=======
+        await this.userRepo.save(caretaker);
+      }
+    }
+
+    return booking;
+>>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   }
 }
