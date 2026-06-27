@@ -40,12 +40,7 @@ export class ChatController {
 
 
 
-<<<<<<< HEAD
 // Mesaj göndər
-=======
-
-  // Mesaj göndər
->>>>>>> b576ca4874ce02d4ed1973432cc7f55f55af8872
   @Post('messages')
   send(@Body() dto: SendMessageDto) {
     return this.chat.sendMessage(dto);
